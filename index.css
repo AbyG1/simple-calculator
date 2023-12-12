@@ -5,37 +5,31 @@
 
 
 #main{
-    height: 570px;
+    height: 584px;
     width: 360px;
-    border: 2px solid wheat;
+    border: 10px solid wheat;
+    border-radius: 5px;
     margin: 20px auto;
-    box-shadow: 2px 3px 5px 5px black;
+    box-shadow: 0 0 10px black;
     font-family:digital;
     
 }
 
 
 #screen{
-    background-color: #C9D7CD;
-    height: 120px;
+    
     width:360px;
     border: 5px solid black;
     box-sizing: border-box;
     display: flex;
     flex-direction: column;
-    justify-content: space-around;
-    align-items: end;
+    
 }
 
-#display-up{
-
-
-    font-size: 25px
-}
-
-#display-low{
-   font-size: 30px;
-
+#display-up,#display-low{
+ line-height: 60px;
+ border:none;
+ background-color: #C9D7CD;
 }
 
 
