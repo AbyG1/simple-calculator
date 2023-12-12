@@ -3,16 +3,46 @@ let secondNumber
 let operator
 
 
-let displayLargeEl = document.getElementById('display-low')
-let displaySmallEl = document.getElementById('display-up')
+const displayLargeEl = document.getElementById('display-low')
+const displaySmallEl = document.getElementById('display-up')
+const deleteButton = document.getElementById('delete-btn')
+const clearButton = document.getElementById('clear-btn')
+const numberButtons = document.querySelectorAll('.num')
+const operatorButtons = document.querySelectorAll('.operator')
 
-let buttons = document.querySelectorAll('button')
 
-buttons.forEach((button) => {
+
+
+numberButtons.forEach((button) => {
     button.addEventListener('click',() => {
-    let value = button.textContent
-    displayLargeEl.textContent += value
+    let inputValue = button.textContent
+    displayLargeEl.value += inputValue
+    displayLargeEl.scrollLeft = displayLargeEl.scrollWidth;
     })
+})
+
+
+operatorButtons.forEach((button) => {
+    button.addEventListener('click',() => {
+        operator = button.textContent
+        displaySmallEl.value += operator
+    })
+
+})
+
+
+deleteButton.addEventListener('click',()=>{
+    
+    
+    if(displayLargeEl.value === ''){
+        displaySmallEl.value = displaySmallEl.value.slice(0,displaySmallEl.value.length - 1)
+    } else {
+        displayLargeEl.value = displayLargeEl.value.slice(0,displayLargeEl.value.length - 1)
+    }
+})
+
+clearButton.addEventListener('click',() => {
+    displayLargeEl.value = ''
 })
 
     
