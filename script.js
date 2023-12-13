@@ -6,29 +6,65 @@ let operator
 const displayLargeEl = document.getElementById('display-low')
 const displaySmallEl = document.getElementById('display-up')
 const deleteButton = document.getElementById('delete-btn')
-const clearButton = document.getElementById('clear-btn')
+const allClearButton = document.getElementById('clear-btn')
 const numberButtons = document.querySelectorAll('.num')
 const operatorButtons = document.querySelectorAll('.operator')
-
+const dotButton = document.getElementById('dot')
+const calculateButton = document.getElementById('equal-btn')
 
 
 
 numberButtons.forEach((button) => {
     button.addEventListener('click',() => {
-    let inputValue = button.textContent
-    displayLargeEl.value += inputValue
+        let inputValue = button.textContent
+        
+            
+            displayLargeEl.value += inputValue 
+       
+    
+
+    
     displayLargeEl.scrollLeft = displayLargeEl.scrollWidth;
+
     })
 })
 
 
 operatorButtons.forEach((button) => {
     button.addEventListener('click',() => {
+
+        if(isNaN(displayLargeEl.value)){
+            displayLargeEl.value = ''
+        }
+        let bottomValue = displayLargeEl.value
+        
         operator = button.textContent
-        displaySmallEl.value += operator
+        displaySmallEl.value = bottomValue+operator
+        displayLargeEl.scrollLeft = displayLargeEl.scrollWidth;
+        displayLargeEl.value = ''
+        displaySmallEl.scrollLeft = displaySmallEl.scrollWidth
+        
     })
 
 })
+
+calculateButton.addEventListener('click',() => {
+
+
+
+    firstNumber = displaySmallEl.value.slice(0,displaySmallEl.value.length-1)
+    operator = displaySmallEl.value.slice(displaySmallEl.value.length-1)
+    secondNumber = displayLargeEl.value
+  
+    displayLargeEl.value=''
+    displaySmallEl.value += secondNumber+'='
+    let answer = operate(operator,firstNumber,secondNumber)
+    displayLargeEl.value = answer
+
+})
+
+
+
 
 
 deleteButton.addEventListener('click',()=>{
@@ -41,8 +77,17 @@ deleteButton.addEventListener('click',()=>{
     }
 })
 
-clearButton.addEventListener('click',() => {
+allClearButton.addEventListener('click',() => {
     displayLargeEl.value = ''
+    displaySmallEl.value = ''
+})
+
+dotButton.addEventListener('click',() => {
+    if(!displayLargeEl.value.includes('.')){
+        displayLargeEl.value += '.'
+    }
+   
+   
 })
 
     
@@ -64,16 +109,20 @@ function multiply(a,b){
 }
 
 function operate(operator,num1,num2){
+    let answer
+    num1 = num1*1
+    num2 = num2*1
     if(operator == '+'){
-        add(num1,num2)
+       answer = add(num1,num2)
     } else if(operator == '-'){
-        subtract(num1,num2)
+       answer = subtract(num1,num2)
     } else if(operator == '*'){
-        multiply(num1,num2)
+        answer = multiply(num1,num2)
     } else if(operator == '/'){
-       divide(num1,num2)
+        answer = divide(num1,num2)
     }
 
+    return answer
 }
 
 
