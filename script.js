@@ -22,7 +22,7 @@ numberButtons.forEach((button) => {
 operatorButtons.forEach((button) => {
     button.addEventListener('click', () => {
         if (displaySmallEl.value.includes('+') || displaySmallEl.value.includes('-') || displaySmallEl.value.includes('*') || displaySmallEl.value.includes('/')) {
-            // If there is already an operator in displaySmallEl, perform the calculation
+          
             firstNumber = displaySmallEl.value.slice(0, displaySmallEl.value.length - 1);
             operator = displaySmallEl.value.slice(displaySmallEl.value.length - 1);
             secondNumber = displayLargeEl.value;
